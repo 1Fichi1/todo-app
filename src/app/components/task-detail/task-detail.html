@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 class="app-title">Детали задачи</h1>
+
+  <mat-card class="task-card" *ngIf="task">
+    <mat-card-header>
+      <mat-card-title>{{ task.title }}</mat-card-title>
+      <mat-card-subtitle>Статус: 
+        <span [ngClass]="{
+          'status-pending': task.status === 'pending',
+          'status-completed': task.status === 'completed'
+        }">{{ task.status === 'pending' ? 'Не выполнена' : 'Выполнена' }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><strong>Описание:</strong> {{ task.description || 'Нет описания' }}</p>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-flat-button color="primary" (click)="goBack()">Назад</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div *ngIf="!task" class="no-task">
+    <p>Задача не найдена</p>
+    <button mat-flat-button color="primary" (click)="goBack()">Вернуться к списку</button>
+  </div>
+</div>
